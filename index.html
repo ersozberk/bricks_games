@@ -38,13 +38,17 @@
                 id: 'oyun1',
                 title: '🎮 1. Neon Gap Runner',
                 content: `
-📦 GEREKLİ DEĞİŞKENLER:
+=================================================
+🎮 OYUN 1: NEON GAP RUNNER (2 KİŞİLİK YEREL YARIŞ) 🏁
+=================================================
+
+📦 GEREKLİ DEĞİŞKENLER (Tüm kuklalar için oluşturulacak):
 1️⃣ Y_Hızı_1
 2️⃣ Y_Hızı_2
 🏎️ Oyun_Hızı
 
 -------------------------------------------------
-🟦 KUKLA 1: MAVİ KÜP (1. OYUNCU - W TUŞU)
+🟦 KUKLA 1: MAVİ KÜP (1. OYUNCU - SOL TARAF)
 -------------------------------------------------
 🟢 [Yeşil Bayrak] Tıklandığında
 📍 X: -100 Y: 0 konumuna git
@@ -63,7 +67,7 @@
         📢 [Kırmızı Kazandı] haberini sal
 
 -------------------------------------------------
-🟥 KUKLA 2: KIRMIZI KÜP (2. OYUNCU - YUKARI OK)
+🟥 KUKLA 2: KIRMIZI KÜP (2. OYUNCU - SAĞ TARAF)
 -------------------------------------------------
 🟢 [Yeşil Bayrak] Tıklandığında
 📍 X: -50 Y: 0 konumuna git
@@ -103,6 +107,8 @@
 -------------------------------------------------
 🏆 KUKLA 4: HAKEM / YAZI (KAZANAN EKRANI)
 -------------------------------------------------
+(🎨 Kostüm 1: KirmiziYazi | 🎨 Kostüm 2: MaviYazi)
+
 -- KOD BLOK 1 --
 🟢 [Yeşil Bayrak] Tıklandığında
 👻 Gizlen
@@ -117,17 +123,23 @@
 📢 [Mavi Kazandı] haberini aldığımda
 👕 Kılığını [MaviYazi] yap
 👁️ Göster
-🛑 Tümünü durdur`
+🛑 Tümünü durdur
+=================================================
             },
             {
                 id: 'oyun2',
                 title: '🚀 2. Uzay Macerası',
                 content: `
+=================================================
+🚀 OYUN 2: UZAY MACERASI (YERÇEKİMSİZ KAÇIŞ) ☄️
+=================================================
+
 📦 GEREKLİ DEĞİŞKENLER:
-🏎️ Oyun_Hızı
+(Bu oyunda yerçekimi olmadığı için sadece 1 değişkene ihtiyacımız var)
+1️⃣ Oyun_Hızı
 
 -------------------------------------------------
-🟦 KUKLA 1: MAVİ GEMİ (1. OYUNCU - W/S TUŞU)
+🟦 KUKLA 1: MAVİ GEMİ (1. OYUNCU - SOL TARAF)
 -------------------------------------------------
 🟢 [Yeşil Bayrak] Tıklandığında
 📍 X: -100 Y: 0 konumuna git
@@ -135,15 +147,17 @@
 
 🔁 Sürekli tekrarla:
     ⌨️ Eğer ([W] tuşuna basıldı mı?) ise:
-        ⬆️ Y konumunu 7 kadar değiştir
+        ⬆️ Y konumunu 7 kadar değiştir (Yukarı git)
+        
     ⌨️ Eğer ([S] tuşuna basıldı mı?) ise:
-        ⬇️ Y konumunu -7 kadar değiştir
+        ⬇️ Y konumunu -7 kadar değiştir (Aşağı git)
+        
     💥 Eğer ([Asteroit] kuklasına değiyor mu?) ise:
         👻 Gizlen
         📢 [Kırmızı Kazandı] haberini sal
 
 -------------------------------------------------
-🟥 KUKLA 2: KIRMIZI GEMİ (2. OYUNCU - YUKARI/AŞAĞI OK)
+🟥 KUKLA 2: KIRMIZI GEMİ (2. OYUNCU - SAĞ TARAF)
 -------------------------------------------------
 🟢 [Yeşil Bayrak] Tıklandığında
 📍 X: -50 Y: 0 konumuna git
@@ -151,16 +165,19 @@
 
 🔁 Sürekli tekrarla:
     ⌨️ Eğer ([Yukarı Ok] tuşuna basıldı mı?) ise:
-        ⬆️ Y konumunu 7 kadar değiştir
+        ⬆️ Y konumunu 7 kadar değiştir (Yukarı git)
+        
     ⌨️ Eğer ([Aşağı Ok] tuşuna basıldı mı?) ise:
-        ⬇️ Y konumunu -7 kadar değiştir
+        ⬇️ Y konumunu -7 kadar değiştir (Aşağı git)
+        
     💥 Eğer ([Asteroit] kuklasına değiyor mu?) ise:
         👻 Gizlen
         📢 [Mavi Kazandı] haberini sal
 
 -------------------------------------------------
-🪨 KUKLA 3: ENGEL (ASTEROİT)
+🪨 KUKLA 3: ENGEL (ASTEROİT / METEOR)
 -------------------------------------------------
+-- KOD BLOK 1 (Üretici) --
 🟢 [Yeşil Bayrak] Tıklandığında
 👻 Gizlen
 🏎️ [Oyun_Hızı] değişkenini -10 yap
@@ -168,41 +185,92 @@
     ⏳ 1 saniye bekle
     👯 Kendimin ikizini yarat
 
+-- KOD BLOK 2 (Klon Hareketi) --
 👯 İkiz olarak başladığımda
 📍 X: 240 Y: (Rastgele -150 ile 150 arası) konumuna git
 👁️ Göster
 🔁 Olana kadar tekrarla (X konumu < -200):
     ⬅️ X konumunu [Oyun_Hızı] kadar değiştir
-🗑️ Bu ikizi sil`
+🗑️ Bu ikizi sil
+
+-------------------------------------------------
+🏆 KUKLA 4: HAKEM / YAZI (KAZANAN EKRANI)
+-------------------------------------------------
+(🎨 Kostüm 1: KirmiziYazi | 🎨 Kostüm 2: MaviYazi)
+
+-- KOD BLOK 1 --
+🟢 [Yeşil Bayrak] Tıklandığında
+👻 Gizlen
+
+-- KOD BLOK 2 --
+📢 [Kırmızı Kazandı] haberini aldığımda
+👕 Kılığını [KirmiziYazi] yap
+👁️ Göster
+🛑 Tümünü durdur
+
+-- KOD BLOK 3 --
+📢 [Mavi Kazandı] haberini aldığımda
+👕 Kılığını [MaviYazi] yap
+👁️ Göster
+🛑 Tümünü durdur
+=================================================
             },
             {
                 id: 'oyun3',
                 title: '🏎️ 3. Otoban Yarışı',
                 content: `
+=================================================
+🏎️ OYUN 3: OTOBAN YARIŞI (ŞERİT DEĞİŞTİRME) 🛣️
+=================================================
+
 📦 GEREKLİ DEĞİŞKENLER:
-🏎️ Oyun_Hızı
+(Engellerin düşüş hızını kontrol etmek için)
+1️⃣ Oyun_Hızı
 
 -------------------------------------------------
-🟦 KUKLA 1: MAVİ ARABA (1. OYUNCU - A/D TUŞU)
+🟦 KUKLA 1: MAVİ ARABA (1. OYUNCU - SOL TARAF)
 -------------------------------------------------
 🟢 [Yeşil Bayrak] Tıklandığında
-📍 X: -70 Y: -120 konumuna git
+📍 X: -70 Y: -120 konumuna git (Ekranın alt sol kısmı)
 👁️ Göster
 
 🔁 Sürekli tekrarla:
     ⌨️ Eğer ([A] tuşuna basıldı mı?) VE (X konumu > -150) ise:
-        ⬅️ X konumunu -70 kadar değiştir
-        ⏳ 0.15 saniye bekle
+        ⬅️ X konumunu -70 kadar değiştir (Sola şerit atla)
+        ⏳ 0.15 saniye bekle (Basılı tutunca uçmaması için)
+        
     ⌨️ Eğer ([D] tuşuna basıldı mı?) VE (X konumu < 150) ise:
-        ➡️ X konumunu 70 kadar değiştir
+        ➡️ X konumunu 70 kadar değiştir (Sağa şerit atla)
         ⏳ 0.15 saniye bekle
+        
     💥 Eğer ([Karşı Araç] kuklasına değiyor mu?) ise:
         👻 Gizlen
         📢 [Kırmızı Kazandı] haberini sal
 
 -------------------------------------------------
-🚓 KUKLA 3: ENGEL (KARŞIDAN GELEN ARAÇ)
+🟥 KUKLA 2: KIRMIZI ARABA (2. OYUNCU - SAĞ TARAF)
 -------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: 70 Y: -120 konumuna git (Ekranın alt sağ kısmı)
+👁️ Göster
+
+🔁 Sürekli tekrarla:
+    ⌨️ Eğer ([Sol Ok] tuşuna basıldı mı?) VE (X konumu > -150) ise:
+        ⬅️ X konumunu -70 kadar değiştir
+        ⏳ 0.15 saniye bekle
+        
+    ⌨️ Eğer ([Sağ Ok] tuşuna basıldı mı?) VE (X konumu < 150) ise:
+        ➡️ X konumunu 70 kadar değiştir
+        ⏳ 0.15 saniye bekle
+        
+    💥 Eğer ([Karşı Araç] kuklasına değiyor mu?) ise:
+        👻 Gizlen
+        📢 [Mavi Kazandı] haberini sal
+
+-------------------------------------------------
+🚓 KUKLA 3: ENGEL (KARŞIDAN GELEN ARAÇ / POLİS)
+-------------------------------------------------
+-- KOD BLOK 1 (Üretici) --
 🟢 [Yeşil Bayrak] Tıklandığında
 👻 Gizlen
 🏎️ [Oyun_Hızı] değişkenini -10 yap
@@ -210,24 +278,52 @@
     ⏳ 0.8 saniye bekle
     👯 Kendimin ikizini yarat
 
+-- KOD BLOK 2 (Klon Hareketi - Yukarıdan Aşağıya) --
 👯 İkiz olarak başladığımda
-📍 X: (Rastgele -140 ile 140 arası) Y: 180 konumuna git
+📍 X: (Rastgele -140 ile 140 arası) Y: 180 konumuna git (Ekranın en üstü)
 👁️ Göster
 🔁 Olana kadar tekrarla (Y konumu < -170):
     ⬇️ Y konumunu [Oyun_Hızı] kadar değiştir
-🗑️ Bu ikizi sil`
+🗑️ Bu ikizi sil
+
+-------------------------------------------------
+🏆 KUKLA 4: HAKEM / YAZI (KAZANAN EKRANI)
+-------------------------------------------------
+(🎨 Kostüm 1: KirmiziYazi | 🎨 Kostüm 2: MaviYazi)
+
+-- KOD BLOK 1 --
+🟢 [Yeşil Bayrak] Tıklandığında
+👻 Gizlen
+
+-- KOD BLOK 2 --
+📢 [Kırmızı Kazandı] haberini aldığımda
+👕 Kılığını [KirmiziYazi] yap
+👁️ Göster
+🛑 Tümünü durdur
+
+-- KOD BLOK 3 --
+📢 [Mavi Kazandı] haberini aldığımda
+👕 Kılığını [MaviYazi] yap
+👁️ Göster
+🛑 Tümünü durdur
+=================================================
             },
             {
                 id: 'oyun4',
                 title: '🐦 4. Flappy Kuş',
                 content: `
+=================================================
+🐦 OYUN 4: FLAPPY KUŞ (SÜREKLİ ZIPLAMA) 🦅
+=================================================
+
 📦 GEREKLİ DEĞİŞKENLER:
+(Yerçekimi ve engel hızı için)
 1️⃣ Y_Hızı_1
 2️⃣ Y_Hızı_2
 🏎️ Oyun_Hızı
 
 -------------------------------------------------
-🟦 KUKLA 1: MAVİ KUŞ (1. OYUNCU - W TUŞU)
+🟦 KUKLA 1: MAVİ KUŞ (1. OYUNCU - SOL TARAF)
 -------------------------------------------------
 🟢 [Yeşil Bayrak] Tıklandığında
 📍 X: -100 Y: 0 konumuna git
@@ -235,68 +331,213 @@
 🔢 [Y_Hızı_1] değişkenini 0 yap
 
 🔁 Sürekli tekrarla:
-    ➖ [Y_Hızı_1] değişkenini -1 kadar değiştir
+    ➖ [Y_Hızı_1] değişkenini -1 kadar değiştir (Yerçekimi)
     ↕️ Y konumunu [Y_Hızı_1] kadar değiştir
     
     ⌨️ Eğer ([W] tuşuna basıldı mı?) ise:
-        🚀 [Y_Hızı_1] değişkenini 8 yap
+        🚀 [Y_Hızı_1] değişkenini 8 yap (Kanat çırpma)
         
     💥 Eğer ([Boru] kuklasına değiyor mu?) VEYA (Y konumu < -160) ise:
         👻 Gizlen
-        📢 [Kırmızı Kazandı] haberini sal`
+        📢 [Kırmızı Kazandı] haberini sal
+
+-------------------------------------------------
+🟥 KUKLA 2: KIRMIZI KUŞ (2. OYUNCU - SAĞ TARAF)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: -50 Y: 0 konumuna git
+👁️ Göster
+🔢 [Y_Hızı_2] değişkenini 0 yap
+
+🔁 Sürekli tekrarla:
+    ➖ [Y_Hızı_2] değişkenini -1 kadar değiştir (Yerçekimi)
+    ↕️ Y konumunu [Y_Hızı_2] kadar değiştir
+    
+    ⬆️ Eğer ([Yukarı Ok] tuşuna basıldı mı?) ise:
+        🚀 [Y_Hızı_2] değişkenini 8 yap (Kanat çırpma)
+        
+    💥 Eğer ([Boru] kuklasına değiyor mu?) VEYA (Y konumu < -160) ise:
+        👻 Gizlen
+        📢 [Mavi Kazandı] haberini sal
+
+-------------------------------------------------
+🟩 KUKLA 3: ENGEL (ORTASI BOŞLUKLU YEŞİL BORU)
+-------------------------------------------------
+-- KOD BLOK 1 (Üretici) --
+🟢 [Yeşil Bayrak] Tıklandığında
+👻 Gizlen
+🏎️ [Oyun_Hızı] değişkenini -8 yap
+🔁 Sürekli tekrarla:
+    ⏳ 1.5 saniye bekle
+    👯 Kendimin ikizini yarat
+
+-- KOD BLOK 2 (Klon Hareketi) --
+👯 İkiz olarak başladığımda
+📍 X: 240 Y: (Rastgele -70 ile 70 arası) konumuna git
+👁️ Göster
+🔁 Olana kadar tekrarla (X konumu < -200):
+    ⬅️ X konumunu [Oyun_Hızı] kadar değiştir
+🗑️ Bu ikizi sil
+
+-------------------------------------------------
+🏆 KUKLA 4: HAKEM / YAZI (KAZANAN EKRANI)
+-------------------------------------------------
+(🎨 Kostüm 1: KirmiziYazi | 🎨 Kostüm 2: MaviYazi)
+
+-- KOD BLOK 1 --
+🟢 [Yeşil Bayrak] Tıklandığında
+👻 Gizlen
+
+-- KOD BLOK 2 --
+📢 [Kırmızı Kazandı] haberini aldığımda
+👕 Kılığını [KirmiziYazi] yap
+👁️ Göster
+🛑 Tümünü durdur
+
+-- KOD BLOK 3 --
+📢 [Mavi Kazandı] haberini aldığımda
+👕 Kılığını [MaviYazi] yap
+👁️ Göster
+🛑 Tümünü durdur
+=================================================
             },
             {
                 id: 'oyun5',
                 title: '🥷 5. Ninja Koşusu',
                 content: `
+=================================================
+🥷 OYUN 5: NİNJA KOŞUSU (ZIPLA VE EĞİL) 🎋
+=================================================
+
 📦 GEREKLİ DEĞİŞKENLER:
 1️⃣ Y_Hızı_1
+2️⃣ Y_Hızı_2
 🏎️ Oyun_Hızı
-🎲 Rastgele_Engel
+🎲 Rastgele_Engel (Engelin alttan mı üstten mi geleceğini belirler)
 
 -------------------------------------------------
-🟦 KUKLA 1: MAVİ NİNJA (1. OYUNCU)
+🟦 KUKLA 1: MAVİ NİNJA (1. OYUNCU - SOL TARAF)
 -------------------------------------------------
+(🎨 Kostüm 1: Ayakta Ninja | 🎨 Kostüm 2: Egilen Ninja)
+
 🟢 [Yeşil Bayrak] Tıklandığında
-📍 X: -100 Y: -100 konumuna git
+📍 X: -100 Y: -100 konumuna git (Zemin)
 👕 Kılığını [Ayakta Ninja] yap
 👁️ Göster
+🔢 [Y_Hızı_1] değişkenini 0 yap
 
 🔁 Sürekli tekrarla:
-    ➖ [Y_Hızı_1] değişkenini -1.5 kadar değiştir
+    ➖ [Y_Hızı_1] değişkenini -1.5 kadar değiştir (Yerçekimi)
     ↕️ Y konumunu [Y_Hızı_1] kadar değiştir
+    
+    🛑 Eğer (Y konumu < -100) ise: (Zemine değdiyse)
+        📍 Y konumunu -100 yap
+        🔢 [Y_Hızı_1] değişkenini 0 yap
+        
+    🚀 Eğer ([W] tuşuna basıldı mı?) VE (Y konumu = -100) ise:
+        🔢 [Y_Hızı_1] değişkenini 15 yap (Zıpla)
+        
+    ⬇️ Eğer ([S] tuşuna basıldı mı?) ise:
+        👕 Kılığını [Egilen Ninja] yap (Boyu kısalır)
+    🧍 Değilse:
+        👕 Kılığını [Ayakta Ninja] yap (Eski haline döner)
+        
+    💥 Eğer ([Engel] kuklasına değiyor mu?) VE (X konumu > -150) ise:
+        👻 Gizlen
+        📢 [Kırmızı Kazandı] haberini sal
+
+-------------------------------------------------
+🟥 KUKLA 2: KIRMIZI NİNJA (2. OYUNCU - SAĞ TARAF)
+-------------------------------------------------
+(🎨 Kostüm 1: Ayakta Ninja | 🎨 Kostüm 2: Egilen Ninja)
+
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: -50 Y: -100 konumuna git
+👕 Kılığını [Ayakta Ninja] yap
+👁️ Göster
+🔢 [Y_Hızı_2] değişkenini 0 yap
+
+🔁 Sürekli tekrarla:
+    ➖ [Y_Hızı_2] değişkenini -1.5 kadar değiştir
+    ↕️ Y konumunu [Y_Hızı_2] kadar değiştir
     
     🛑 Eğer (Y konumu < -100) ise:
         📍 Y konumunu -100 yap
-    
-    🚀 Eğer ([W] tuşuna basıldı mı?) VE (Y konumu = -100) ise:
-        🔢 [Y_Hızı_1] değişkenini 15 yap
+        🔢 [Y_Hızı_2] değişkenini 0 yap
         
-    ⬇️ Eğer ([S] tuşuna basıldı mı?) ise:
+    🚀 Eğer ([Yukarı Ok] tuşuna basıldı mı?) VE (Y konumu = -100) ise:
+        🔢 [Y_Hızı_2] değişkenini 15 yap
+        
+    ⬇️ Eğer ([Aşağı Ok] tuşuna basıldı mı?) ise:
         👕 Kılığını [Egilen Ninja] yap
     🧍 Değilse:
         👕 Kılığını [Ayakta Ninja] yap
+        
+    💥 Eğer ([Engel] kuklasına değiyor mu?) VE (X konumu > -100) ise:
+        👻 Gizlen
+        📢 [Mavi Kazandı] haberini sal
 
 -------------------------------------------------
 🪵 KUKLA 3: ENGEL (KÜTÜK VEYA SHURİKEN)
 -------------------------------------------------
+-- KOD BLOK 1 (Üretici) --
+🟢 [Yeşil Bayrak] Tıklandığında
+👻 Gizlen
+🏎️ [Oyun_Hızı] değişkenini -10 yap
+🔁 Sürekli tekrarla:
+    ⏳ 1.2 saniye bekle
+    👯 Kendimin ikizini yarat
+
+-- KOD BLOK 2 (Klon Hareketi - Alttan veya Üstten) --
 👯 İkiz olarak başladığımda
-🎲 [Rastgele_Engel] değişkenini (1 ile 2 arasında rastgele) yap
+🎲 [Rastgele_Engel] değişkenini (1 ile 2 arasında rastgele sayı seç) yap
 🔀 Eğer ([Rastgele_Engel] = 1) ise:
-    📍 X: 240 Y: -100 konumuna git (Zeminden)
+    📍 X: 240 Y: -100 konumuna git (Zeminden gelir -> Zıplamak lazım)
 🔀 Değilse:
-    📍 X: 240 Y: -50 konumuna git (Havadan)`
+    📍 X: 240 Y: -50 konumuna git (Havadan gelir -> Eğilmek lazım)
+    
+👁️ Göster
+🔁 Olana kadar tekrarla (X konumu < -200):
+    ⬅️ X konumunu [Oyun_Hızı] kadar değiştir
+🗑️ Bu ikizi sil
+
+-------------------------------------------------
+🏆 KUKLA 4: HAKEM / YAZI (KAZANAN EKRANI)
+-------------------------------------------------
+(🎨 Kostüm 1: KirmiziYazi | 🎨 Kostüm 2: MaviYazi)
+
+-- KOD BLOK 1 --
+🟢 [Yeşil Bayrak] Tıklandığında
+👻 Gizlen
+
+-- KOD BLOK 2 --
+📢 [Kırmızı Kazandı] haberini aldığımda
+👕 Kılığını [KirmiziYazi] yap
+👁️ Göster
+🛑 Tümünü durdur
+
+-- KOD BLOK 3 --
+📢 [Mavi Kazandı] haberini aldığımda
+👕 Kılığını [MaviYazi] yap
+👁️ Göster
+🛑 Tümünü durdur
+=================================================
             },
             {
                 id: 'oyun6',
                 title: '⚓ 6. Denizaltı Keşfi',
                 content: `
+                =================================================
+⚓ OYUN 6: DENİZALTI KEŞFİ (İVMELİ MOTOR) 🌊
+=================================================
+
 📦 GEREKLİ DEĞİŞKENLER:
 1️⃣ Y_Hızı_1
+2️⃣ Y_Hızı_2
 🏎️ Oyun_Hızı
 
 -------------------------------------------------
-🟦 KUKLA 1: MAVİ DENİZALTI (1. OYUNCU)
+🟦 KUKLA 1: MAVİ DENİZALTI (1. OYUNCU - SOL TARAF)
 -------------------------------------------------
 🟢 [Yeşil Bayrak] Tıklandığında
 📍 X: -100 Y: 0 konumuna git
@@ -307,14 +548,90 @@
     ↕️ Y konumunu [Y_Hızı_1] kadar değiştir
     
     🔀 Eğer ([W] tuşuna basılı mı?) ise:
-        ➕ [Y_Hızı_1] değişkenini 1 kadar değiştir (Motor çalışır)
+        ➕ [Y_Hızı_1] değişkenini 1 kadar değiştir (Motor çalışır, yükselir)
     ⏬ Değilse:
-        ➖ [Y_Hızı_1] değişkenini -0.5 kadar değiştir (Batar)
+        ➖ [Y_Hızı_1] değişkenini -0.5 kadar değiştir (Motor durur, batar)
+        
+    🛑 Eğer (Y konumu > 160) ise: (Tavana çarparsa)
+        📍 Y konumunu 160 yap
+        🔢 [Y_Hızı_1] değişkenini 0 yap
+        
+    🛑 Eğer (Y konumu < -160) ise: (Dibe değerse)
+        📍 Y konumunu -160 yap
+        🔢 [Y_Hızı_1] değişkenini 0 yap
+        
+    💥 Eğer ([Mayın] kuklasına değiyor mu?) ise:
+        👻 Gizlen
+        📢 [Kırmızı Kazandı] haberini sal
+
+-------------------------------------------------
+🟥 KUKLA 2: KIRMIZI DENİZALTI (2. OYUNCU - SAĞ TARAF)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: -50 Y: 0 konumuna git
+👁️ Göster
+🔢 [Y_Hızı_2] değişkenini 0 yap
+
+🔁 Sürekli tekrarla:
+    ↕️ Y konumunu [Y_Hızı_2] kadar değiştir
+    
+    🔀 Eğer ([Yukarı Ok] tuşuna basılı mı?) ise:
+        ➕ [Y_Hızı_2] değişkenini 1 kadar değiştir
+    ⏬ Değilse:
+        ➖ [Y_Hızı_2] değişkenini -0.5 kadar değiştir
         
     🛑 Eğer (Y konumu > 160) ise:
         📍 Y konumunu 160 yap
+        🔢 [Y_Hızı_2] değişkenini 0 yap
+        
     🛑 Eğer (Y konumu < -160) ise:
-        📍 Y konumunu -160 yap`
+        📍 Y konumunu -160 yap
+        🔢 [Y_Hızı_2] değişkenini 0 yap
+        
+    💥 Eğer ([Mayın] kuklasına değiyor mu?) ise:
+        👻 Gizlen
+        📢 [Mavi Kazandı] haberini sal
+
+-------------------------------------------------
+💣 KUKLA 3: ENGEL (SUALTI MAYINI VEYA YOSUN)
+-------------------------------------------------
+-- KOD BLOK 1 (Üretici) --
+🟢 [Yeşil Bayrak] Tıklandığında
+👻 Gizlen
+🏎️ [Oyun_Hızı] değişkenini -7 yap (Sualtı olduğu için biraz daha yavaş)
+🔁 Sürekli tekrarla:
+    ⏳ 1.5 saniye bekle
+    👯 Kendimin ikizini yarat
+
+-- KOD BLOK 2 (Klon Hareketi) --
+👯 İkiz olarak başladığımda
+📍 X: 240 Y: (Rastgele -140 ile 140 arası) konumuna git
+👁️ Göster
+🔁 Olana kadar tekrarla (X konumu < -200):
+    ⬅️ X konumunu [Oyun_Hızı] kadar değiştir
+🗑️ Bu ikizi sil
+
+-------------------------------------------------
+🏆 KUKLA 4: HAKEM / YAZI (KAZANAN EKRANI)
+-------------------------------------------------
+(🎨 Kostüm 1: KirmiziYazi | 🎨 Kostüm 2: MaviYazi)
+
+-- KOD BLOK 1 --
+🟢 [Yeşil Bayrak] Tıklandığında
+👻 Gizlen
+
+-- KOD BLOK 2 --
+📢 [Kırmızı Kazandı] haberini aldığımda
+👕 Kılığını [KirmiziYazi] yap
+👁️ Göster
+🛑 Tümünü durdur
+
+-- KOD BLOK 3 --
+📢 [Mavi Kazandı] haberini aldığımda
+👕 Kılığını [MaviYazi] yap
+👁️ Göster
+🛑 Tümünü durdur
+=================================================
             },
             {
                 id: 'ekstralar',
