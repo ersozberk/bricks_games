@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scratch Multiplayer Oyun Atölyesi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Kaydırma çubuğu tasarımları */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #1f2937; }
+        ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+        pre { white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 h-screen flex flex-col md:flex-row overflow-hidden font-sans">
+
+    <nav class="w-full md:w-72 bg-gray-800 flex-shrink-0 border-b md:border-b-0 md:border-r border-gray-700 flex flex-col">
+        <div class="p-4 bg-gray-950 border-b border-gray-700">
+            <h1 class="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+                🚀 Scratch Oyun Atölyesi
+            </h1>
+            <p class="text-xs text-gray-400 mt-1">Kodlarına bakarak oyununu geliştir!</p>
+        </div>
+        
+        <div id="tabs-container" class="flex md:flex-col overflow-x-auto md:overflow-y-auto p-2 gap-2">
+            </div>
+    </nav>
+
+    <main class="flex-1 overflow-y-auto p-4 md:p-8 bg-gray-900 relative" id="content-container">
+        </main>
+
+    <script>
+        // Oyun Verileri
+        const gamesData = [
+            {
+                id: 'oyun1',
+                title: '🎮 1. Neon Gap Runner',
+                content: `
+📦 GEREKLİ DEĞİŞKENLER:
+1️⃣ Y_Hızı_1
+2️⃣ Y_Hızı_2
+🏎️ Oyun_Hızı
+
+-------------------------------------------------
+🟦 KUKLA 1: MAVİ KÜP (1. OYUNCU - W TUŞU)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: -100 Y: 0 konumuna git
+👁️ Göster
+🔢 [Y_Hızı_1] değişkenini 0 yap
+
+🔁 Sürekli tekrarla:
+    ➖ [Y_Hızı_1] değişkenini -1 kadar değiştir (Yerçekimi)
+    ↕️ Y konumunu [Y_Hızı_1] kadar değiştir
+    
+    ⌨️ Eğer ([W] tuşuna basıldı mı?) ise:
+        🚀 [Y_Hızı_1] değişkenini 10 yap (Zıpla)
+        
+    💥 Eğer ([Engel] kuklasına değiyor mu?) VE (X konumu > -150) ise:
+        👻 Gizlen
+        📢 [Kırmızı Kazandı] haberini sal
+
+-------------------------------------------------
+🟥 KUKLA 2: KIRMIZI KÜP (2. OYUNCU - YUKARI OK)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: -50 Y: 0 konumuna git
+👁️ Göster
+🔢 [Y_Hızı_2] değişkenini 0 yap
+
+🔁 Sürekli tekrarla:
+    ➖ [Y_Hızı_2] değişkenini -1 kadar değiştir (Yerçekimi)
+    ↕️ Y konumunu [Y_Hızı_2] kadar değiştir
+    
+    ⬆️ Eğer ([Yukarı Ok] tuşuna basıldı mı?) ise:
+        🚀 [Y_Hızı_2] değişkenini 10 yap (Zıpla)
+        
+    💥 Eğer ([Engel] kuklasına değiyor mu?) VE (X konumu > -100) ise:
+        👻 Gizlen
+        📢 [Mavi Kazandı] haberini sal
+
+-------------------------------------------------
+🧱 KUKLA 3: ENGEL (ORTASI BOŞLUKLU SÜTUN)
+-------------------------------------------------
+-- KOD BLOK 1 (Üretici) --
+🟢 [Yeşil Bayrak] Tıklandığında
+👻 Gizlen
+🏎️ [Oyun_Hızı] değişkenini -10 yap
+🔁 Sürekli tekrarla:
+    ⏳ 1.5 saniye bekle
+    👯 Kendimin ikizini yarat
+
+-- KOD BLOK 2 (Klon Hareketi) --
+👯 İkiz olarak başladığımda
+📍 X: 240 Y: (Rastgele -60 ile 60 arası) konumuna git
+👁️ Göster
+🔁 Olana kadar tekrarla (X konumu < -200):
+    ⬅️ X konumunu [Oyun_Hızı] kadar değiştir
+🗑️ Bu ikizi sil
+
+-------------------------------------------------
+🏆 KUKLA 4: HAKEM / YAZI (KAZANAN EKRANI)
+-------------------------------------------------
+-- KOD BLOK 1 --
+🟢 [Yeşil Bayrak] Tıklandığında
+👻 Gizlen
+
+-- KOD BLOK 2 --
+📢 [Kırmızı Kazandı] haberini aldığımda
+👕 Kılığını [KirmiziYazi] yap
+👁️ Göster
+🛑 Tümünü durdur
+
+-- KOD BLOK 3 --
+📢 [Mavi Kazandı] haberini aldığımda
+👕 Kılığını [MaviYazi] yap
+👁️ Göster
+🛑 Tümünü durdur`
+            },
+            {
+                id: 'oyun2',
+                title: '🚀 2. Uzay Macerası',
+                content: `
+📦 GEREKLİ DEĞİŞKENLER:
+🏎️ Oyun_Hızı
+
+-------------------------------------------------
+🟦 KUKLA 1: MAVİ GEMİ (1. OYUNCU - W/S TUŞU)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: -100 Y: 0 konumuna git
+👁️ Göster
+
+🔁 Sürekli tekrarla:
+    ⌨️ Eğer ([W] tuşuna basıldı mı?) ise:
+        ⬆️ Y konumunu 7 kadar değiştir
+    ⌨️ Eğer ([S] tuşuna basıldı mı?) ise:
+        ⬇️ Y konumunu -7 kadar değiştir
+    💥 Eğer ([Asteroit] kuklasına değiyor mu?) ise:
+        👻 Gizlen
+        📢 [Kırmızı Kazandı] haberini sal
+
+-------------------------------------------------
+🟥 KUKLA 2: KIRMIZI GEMİ (2. OYUNCU - YUKARI/AŞAĞI OK)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: -50 Y: 0 konumuna git
+👁️ Göster
+
+🔁 Sürekli tekrarla:
+    ⌨️ Eğer ([Yukarı Ok] tuşuna basıldı mı?) ise:
+        ⬆️ Y konumunu 7 kadar değiştir
+    ⌨️ Eğer ([Aşağı Ok] tuşuna basıldı mı?) ise:
+        ⬇️ Y konumunu -7 kadar değiştir
+    💥 Eğer ([Asteroit] kuklasına değiyor mu?) ise:
+        👻 Gizlen
+        📢 [Mavi Kazandı] haberini sal
+
+-------------------------------------------------
+🪨 KUKLA 3: ENGEL (ASTEROİT)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+👻 Gizlen
+🏎️ [Oyun_Hızı] değişkenini -10 yap
+🔁 Sürekli tekrarla:
+    ⏳ 1 saniye bekle
+    👯 Kendimin ikizini yarat
+
+👯 İkiz olarak başladığımda
+📍 X: 240 Y: (Rastgele -150 ile 150 arası) konumuna git
+👁️ Göster
+🔁 Olana kadar tekrarla (X konumu < -200):
+    ⬅️ X konumunu [Oyun_Hızı] kadar değiştir
+🗑️ Bu ikizi sil`
+            },
+            {
+                id: 'oyun3',
+                title: '🏎️ 3. Otoban Yarışı',
+                content: `
+📦 GEREKLİ DEĞİŞKENLER:
+🏎️ Oyun_Hızı
+
+-------------------------------------------------
+🟦 KUKLA 1: MAVİ ARABA (1. OYUNCU - A/D TUŞU)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: -70 Y: -120 konumuna git
+👁️ Göster
+
+🔁 Sürekli tekrarla:
+    ⌨️ Eğer ([A] tuşuna basıldı mı?) VE (X konumu > -150) ise:
+        ⬅️ X konumunu -70 kadar değiştir
+        ⏳ 0.15 saniye bekle
+    ⌨️ Eğer ([D] tuşuna basıldı mı?) VE (X konumu < 150) ise:
+        ➡️ X konumunu 70 kadar değiştir
+        ⏳ 0.15 saniye bekle
+    💥 Eğer ([Karşı Araç] kuklasına değiyor mu?) ise:
+        👻 Gizlen
+        📢 [Kırmızı Kazandı] haberini sal
+
+-------------------------------------------------
+🚓 KUKLA 3: ENGEL (KARŞIDAN GELEN ARAÇ)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+👻 Gizlen
+🏎️ [Oyun_Hızı] değişkenini -10 yap
+🔁 Sürekli tekrarla:
+    ⏳ 0.8 saniye bekle
+    👯 Kendimin ikizini yarat
+
+👯 İkiz olarak başladığımda
+📍 X: (Rastgele -140 ile 140 arası) Y: 180 konumuna git
+👁️ Göster
+🔁 Olana kadar tekrarla (Y konumu < -170):
+    ⬇️ Y konumunu [Oyun_Hızı] kadar değiştir
+🗑️ Bu ikizi sil`
+            },
+            {
+                id: 'oyun4',
+                title: '🐦 4. Flappy Kuş',
+                content: `
+📦 GEREKLİ DEĞİŞKENLER:
+1️⃣ Y_Hızı_1
+2️⃣ Y_Hızı_2
+🏎️ Oyun_Hızı
+
+-------------------------------------------------
+🟦 KUKLA 1: MAVİ KUŞ (1. OYUNCU - W TUŞU)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: -100 Y: 0 konumuna git
+👁️ Göster
+🔢 [Y_Hızı_1] değişkenini 0 yap
+
+🔁 Sürekli tekrarla:
+    ➖ [Y_Hızı_1] değişkenini -1 kadar değiştir
+    ↕️ Y konumunu [Y_Hızı_1] kadar değiştir
+    
+    ⌨️ Eğer ([W] tuşuna basıldı mı?) ise:
+        🚀 [Y_Hızı_1] değişkenini 8 yap
+        
+    💥 Eğer ([Boru] kuklasına değiyor mu?) VEYA (Y konumu < -160) ise:
+        👻 Gizlen
+        📢 [Kırmızı Kazandı] haberini sal`
+            },
+            {
+                id: 'oyun5',
+                title: '🥷 5. Ninja Koşusu',
+                content: `
+📦 GEREKLİ DEĞİŞKENLER:
+1️⃣ Y_Hızı_1
+🏎️ Oyun_Hızı
+🎲 Rastgele_Engel
+
+-------------------------------------------------
+🟦 KUKLA 1: MAVİ NİNJA (1. OYUNCU)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: -100 Y: -100 konumuna git
+👕 Kılığını [Ayakta Ninja] yap
+👁️ Göster
+
+🔁 Sürekli tekrarla:
+    ➖ [Y_Hızı_1] değişkenini -1.5 kadar değiştir
+    ↕️ Y konumunu [Y_Hızı_1] kadar değiştir
+    
+    🛑 Eğer (Y konumu < -100) ise:
+        📍 Y konumunu -100 yap
+    
+    🚀 Eğer ([W] tuşuna basıldı mı?) VE (Y konumu = -100) ise:
+        🔢 [Y_Hızı_1] değişkenini 15 yap
+        
+    ⬇️ Eğer ([S] tuşuna basıldı mı?) ise:
+        👕 Kılığını [Egilen Ninja] yap
+    🧍 Değilse:
+        👕 Kılığını [Ayakta Ninja] yap
+
+-------------------------------------------------
+🪵 KUKLA 3: ENGEL (KÜTÜK VEYA SHURİKEN)
+-------------------------------------------------
+👯 İkiz olarak başladığımda
+🎲 [Rastgele_Engel] değişkenini (1 ile 2 arasında rastgele) yap
+🔀 Eğer ([Rastgele_Engel] = 1) ise:
+    📍 X: 240 Y: -100 konumuna git (Zeminden)
+🔀 Değilse:
+    📍 X: 240 Y: -50 konumuna git (Havadan)`
+            },
+            {
+                id: 'oyun6',
+                title: '⚓ 6. Denizaltı Keşfi',
+                content: `
+📦 GEREKLİ DEĞİŞKENLER:
+1️⃣ Y_Hızı_1
+🏎️ Oyun_Hızı
+
+-------------------------------------------------
+🟦 KUKLA 1: MAVİ DENİZALTI (1. OYUNCU)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: -100 Y: 0 konumuna git
+👁️ Göster
+🔢 [Y_Hızı_1] değişkenini 0 yap
+
+🔁 Sürekli tekrarla:
+    ↕️ Y konumunu [Y_Hızı_1] kadar değiştir
+    
+    🔀 Eğer ([W] tuşuna basılı mı?) ise:
+        ➕ [Y_Hızı_1] değişkenini 1 kadar değiştir (Motor çalışır)
+    ⏬ Değilse:
+        ➖ [Y_Hızı_1] değişkenini -0.5 kadar değiştir (Batar)
+        
+    🛑 Eğer (Y konumu > 160) ise:
+        📍 Y konumunu 160 yap
+    🛑 Eğer (Y konumu < -160) ise:
+        📍 Y konumunu -160 yap`
+            },
+            {
+                id: 'ekstralar',
+                title: '🌟 Ekstra Görevler',
+                content: `
+▶️ 1. BAŞLA BUTONU (PLAY BUTTON)
+-------------------------------------------------
+🟢 [Yeşil Bayrak] Tıklandığında
+📍 X: 0 Y: 0 konumuna git
+👁️ Göster
+🔁 Sürekli tekrarla:
+    🖱️ Eğer (Fare imlecine değiyor mu?) VE (Fareye basılı mı?) ise:
+        📢 [Oyun Başladı] haberini sal
+        👻 Gizlen
+
+🎵 2. OYUN İÇİ MÜZİK
+-------------------------------------------------
+🖼️ DEKOR (ARKA PLAN) KODU:
+📢 [Oyun Başladı] haberini aldığımda
+🔊 Ses düzeyini %50 yap
+🔁 Sürekli tekrarla:
+    🎶 [Hip Hop] sesini bitene kadar çal
+
+🚀 3. EGZOZ / İZ BIRAKMA EFEKTİ
+-------------------------------------------------
+🟦 OYUNCU KODUNA EKLENECEK:
+📢 [Oyun Başladı] haberini aldığımda
+🔁 Sürekli tekrarla:
+    👯 Kendimin ikizini yarat
+    ⏳ 0.05 saniye bekle
+
+👯 İkiz olarak başladığımda
+👻 [Hayalet] etkisini 50 yap
+🔁 10 defa tekrarla:
+    ➕ [Hayalet] etkisini 5 değiştir
+🗑️ Bu ikizi sil`
+            }
+        ];
+
+        const tabsContainer = document.getElementById('tabs-container');
+        const contentContainer = document.getElementById('content-container');
+
+        // Sayfa yüklendiğinde sekmeleri ve içerikleri oluştur
+        function renderApp() {
+            gamesData.forEach((game, index) => {
+                // Tab Butonunu Oluştur
+                const btn = document.createElement('button');
+                btn.className = `tab-btn whitespace-nowrap md:whitespace-normal text-left px-4 py-3 rounded-lg font-medium text-sm transition-colors duration-200 border-l-4 focus:outline-none ${index === 0 ? 'bg-gray-800 border-green-400 text-green-400 shadow-md' : 'bg-transparent border-transparent text-gray-400 hover:bg-gray-800 hover:text-gray-200'}`;
+                btn.innerText = game.title;
+                btn.onclick = () => showTab(game.id, btn);
+                tabsContainer.appendChild(btn);
+
+                // İçerik Kutusunu Oluştur
+                const section = document.createElement('section');
+                section.id = game.id;
+                section.className = `tab-content max-w-4xl mx-auto ${index === 0 ? 'block' : 'hidden'}`;
+                
+                // Başlık ve Kod bloğu şablonu
+                section.innerHTML = `
+                    <div class="mb-6">
+                        <h2 class="text-3xl font-extrabold text-white mb-2">${game.title}</h2>
+                        <p class="text-gray-400">Blokları Scratch'e taşımak için aşağıdaki kodları referans alabilirsin.</p>
+                    </div>
+                    <div class="bg-gray-950 p-6 rounded-xl border border-gray-700 shadow-2xl relative">
+                        <div class="absolute top-0 left-0 w-full h-8 bg-gray-800 rounded-t-xl border-b border-gray-700 flex items-center px-4 gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="text-xs text-gray-400 ml-2 font-mono">scratch_blocks.txt</span>
+                        </div>
+                        <pre class="mt-6 text-green-300 text-sm md:text-base leading-relaxed overflow-x-auto"><code>${game.content}</code></pre>
+                    </div>
+                `;
+                contentContainer.appendChild(section);
+            });
+        }
+
+        // Sekme Değiştirme Mantığı
+        function showTab(tabId, clickedBtn) {
+            // Tüm içerikleri gizle
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+            // Tüm butonların aktif stilini sıfırla
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = 'tab-btn whitespace-nowrap md:whitespace-normal text-left px-4 py-3 rounded-lg font-medium text-sm transition-colors duration-200 border-l-4 focus:outline-none bg-transparent border-transparent text-gray-400 hover:bg-gray-800 hover:text-gray-200';
+            });
+
+            // Seçilen içeriği göster
+            const activeContent = document.getElementById(tabId);
+            activeContent.classList.remove('hidden');
+            activeContent.classList.add('block');
+            
+            // Tıklanan butonu aktif yap
+            clickedBtn.className = 'tab-btn whitespace-nowrap md:whitespace-normal text-left px-4 py-3 rounded-lg font-medium text-sm transition-colors duration-200 border-l-4 focus:outline-none bg-gray-800 border-green-400 text-green-400 shadow-md';
+        }
+
+        // Uygulamayı Başlat
+        renderApp();
+    </script>
+</body>
+</html>
