@@ -1,24 +1,3 @@
-Kodla, oyununu geliştir!
-
-🎮 1. Geometry Dash
-
-🚀 2. Uzay Macerası
-
-🏎️ 3. Otoban Yarışı
-
-🐦 4. Flappy Kuş
-
-🥷 5. Ninja Koşusu
-
-⚓ 6. Denizaltı Keşfi
-
-🌟 Ekstra Görevler oyunlarının scrachte nasıl kodlandığını gösteren çocuklara yönelik bir html websitesinin github readme topics about kısımları için gerekli yazıları txt içinde yazar mısın
-
-Scratch Oyun Atölyesi web siten için GitHub'ın "About" (Hakkında) ve "Topics" (Etiketler) bölümlerinde kullanabileceğin, hem çocuklara hem de eğitmenlere hitap eden profesyonel içerikleri bir metin dosyası olarak hazırladım.
-
-
-
-
 # 🚀 Scratch Oyun Atölyesi: Kodla, Oyununu Geliştir!
 
 Bu proje, çocukların Scratch platformu üzerinde popüler oyunları adım adım nasıl kodlayabileceklerini öğreten eğlenceli ve interaktif bir eğitim web sitesidir.
